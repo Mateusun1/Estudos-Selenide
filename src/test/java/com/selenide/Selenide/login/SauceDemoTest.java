@@ -1,9 +1,6 @@
 package com.selenide.Selenide.login;
 
-import com.selenide.Selenide.page.CartPage;
-import com.selenide.Selenide.page.CheckoutPage;
-import com.selenide.Selenide.page.InventoryPage;
-import com.selenide.Selenide.page.LoginPage;
+import com.selenide.Selenide.page.*;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -36,5 +33,11 @@ public class SauceDemoTest {
         CheckoutPage checkoutPage = cartPage.fazerCheckout();
 
         checkoutPage.verificarSeBotaoExiste();
+        checkoutPage.preencherDados("João","Santos", "95042123");
+        checkoutPage.clicarNoBotao();
+        checkoutPage.verificarSeCaiuNoCheckoutTwo();
+        FinishOrderPage finishOrderPage = checkoutPage.clicarNoBotaoFinish();
+
+        finishOrderPage.verificarSeConfirmouCompra();
     }
 }
